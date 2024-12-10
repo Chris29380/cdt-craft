@@ -1,0 +1,538 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  margin-left: 3px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(44, 44, 44);
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track {
+  background: orangered;
+  border-radius: 43px;
+}
+::-webkit-scrollbar-track:hover {
+  background: white;
+}
+::-webkit-scrollbar-track:active {
+  background: grey;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+body {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+	align-items: center;
+	justify-content: center;
+    overflow: hidden;
+}
+
+/* ---------------------------- */
+/* list recipes */
+/* ---------------------------- */
+
+body .contentrecipes {
+	display: none;
+	flex-direction: column;
+	position: absolute;
+	width: 15vw;
+	height: 20vw;
+	margin-left: 22vw;
+	background-color: rgba(0, 0, 0, 0.67);
+	border-radius: 21px;
+	align-items: center;
+	justify-content: center;	
+	overflow: auto;
+}
+
+body .contentrecipes .title {
+	display: flex;
+	position: absolute;
+	width: 15vw;
+	height: 3vw;
+	margin-bottom: 17vw;
+	font-family: 'Oswald', sans-serif;
+    font-size: calc(10px + 0.390625vw);
+    text-transform: uppercase;
+    color: orangered;
+    text-shadow: black 1px 2px 0px, black 1px 3px 2.5px;
+	background-color: rgba(0, 0, 0, 0.75);
+	border-radius: 21px 21px 0 0;
+	align-items: center;
+	justify-content: center;
+	cursor: grab;
+}
+
+body .contentrecipes .boxesrecipes {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	width: 13vw;
+	margin-top: 3vw;
+	height: 15vw;
+	background-color: rgba(68, 68, 68, 0.05);
+	border-radius: 5px;
+	align-items:flex-start;
+	justify-content: flex-start;
+	overflow: auto;
+	cursor: grab;
+}
+
+body .contentrecipes .boxesrecipes .boxrecipes {
+	display: flex;
+	position: relative;
+	width: 12vw;
+	height: 3vw;
+	margin-top: 0.25vw;
+	margin-left: 0.25vw;
+	background-color: rgba(28,28,28,0.25);
+	border-radius: 10px;
+	align-items: center;
+	cursor: grab;
+}
+
+body .contentrecipes .boxesrecipes .boxrecipes:hover {
+	background-color: rgba(128,128,128,0.15);
+}
+
+body .contentrecipes .boxesrecipes .boxrecipes .boximg {
+	display: flex;
+	position: absolute;
+	height: 2.5vw;
+	width: 2.5vw;
+	margin-left: 0.5vw;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(1,1,0,0.20);
+	border-radius: 50%;
+	cursor: grab;
+}
+
+body .contentrecipes .boxesrecipes .boxrecipes .boximg img{
+	max-height: 1.5vw;
+	max-width: 2.5vw;
+	cursor: grab;
+}
+
+body .contentrecipes .boxesrecipes .boxrecipes .boximg svg{
+	max-height: 1.5vw;
+	max-width: 2.5vw;
+	cursor: grab;
+}
+
+body .contentrecipes .boxesrecipes .boxrecipes .openstashtext {
+	display: flex;
+	position: absolute;
+	width: 9vw;
+	height: 2vw;
+	margin-left: 3.5vw;
+	font-family: 'Oswald', sans-serif;
+    font-size: calc(7px + 0.390625vw);
+    text-transform: uppercase;
+    color: orangered;
+    text-shadow: black 1px 2px 0px, black 1px 3px 2.5px;
+	align-items: center;
+	justify-content: left;
+	cursor: grab;
+}
+
+body .contentrecipes .boxesrecipes .boxrecipes .rightbox {
+	display: flex;
+	position: absolute;
+	flex-direction: column;
+	margin-left: 3.5vw;
+}
+
+body .contentrecipes .boxesrecipes .boxrecipes .rightbox .labelitemfinal {
+	display: flex;
+	position: relative;
+	width: 9vw;
+	height: 1.5vw;
+	font-family: 'Oswald', sans-serif;
+    font-size: calc(7px + 0.390625vw);
+    text-transform: uppercase;
+    color: orangered;
+    text-shadow: black 1px 2px 0px, black 1px 3px 2.5px;
+	align-items: center;
+	justify-content: left;
+	cursor: grab;
+}
+
+body .contentrecipes .boxesrecipes .boxrecipes .rightbox .qtyfinal {
+	display: flex;
+	position: relative;
+	width: 9vw;
+	height: 1vw;
+	font-family: 'Oswald', sans-serif;
+    font-size: calc(6px + 0.390625vw);
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    text-shadow: black 1px 2px 0px, black 1px 3px 2.5px;
+	align-items: center;
+	justify-content: left;
+	cursor: grab;
+}
+
+/* ---------------------------- */
+/* Recipe */
+/* ---------------------------- */
+
+body .contentrecipe {
+	display: none;
+	flex-direction: column;
+	position: absolute;
+	width: 35vw;
+	height: 20vw;
+	margin-left: 22vw;
+	background-color: rgba(0, 0, 0, 0.67);
+	border-radius: 21px;
+	align-items: center;
+	justify-content: center;	
+	overflow: auto;
+}
+
+body .contentrecipe .title {
+	display: flex;
+	position: absolute;
+	width: 35vw;
+	height: 3vw;
+	margin-bottom: 17vw;
+	font-family: 'Oswald', sans-serif;
+    font-size: calc(10px + 0.390625vw);
+    text-transform: uppercase;
+    color: orangered;
+    text-shadow: black 1px 2px 0px, black 1px 3px 2.5px;
+	background-color: rgba(0, 0, 0, 0.75);
+	border-radius: 21px 21px 0 0;
+	align-items: center;
+	justify-content: center;
+	cursor: grab;
+}
+
+body .contentrecipe .boxrecipe {
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	width: 30vw;
+	height: 9vw;
+	margin-top: 0.25vw;
+	margin-left: 0.25vw;
+	background-color: rgba(129, 129, 129, 0.10);
+	border-radius: 10px;
+	align-items: center;
+	cursor: grab;
+}
+
+body .contentrecipe .boxrecipe .itemfinal{
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	width: 7vw;
+	height: 9vw;
+	border-radius: 10px;
+	justify-content: center;
+	align-items: center;
+	cursor: grab;
+	background-color: rgb(0, 0, 0);
+}
+
+body .contentrecipe .boxrecipe .itemfinal .boximg{
+	display: flex;
+	position: relative;
+	width: 3vw;
+	height: 3vw;
+	background-color: rgba(49, 49, 49, 0.103);
+	border-radius: 10px;
+	align-items: center;
+	justify-content: center;
+	cursor: grab;
+}
+
+body .contentrecipe .boxrecipe .itemfinal .boximg img{
+	max-height: 2.8vw;
+	max-width: 2.8vw;
+	cursor: grab;
+}
+
+body .contentrecipe .boxrecipe .itemfinal .labelitemfinal {
+	display: flex;
+	position: relative;
+	width: 4vw;
+	height: 1.5vw;
+	font-family: 'Oswald', sans-serif;
+    font-size: calc(7px + 0.390625vw);
+    text-transform: uppercase;
+    color: orangered;
+    text-shadow: black 1px 2px 0px, black 1px 3px 2.5px;
+	align-items: center;
+	justify-content: center;
+	cursor: grab;
+}
+
+
+body .contentrecipe .boxrecipe .itemfinal .qtyfinal {
+	display: flex;
+	position: relative;
+	width: 4vw;
+	height: 1.5vw;
+	font-family: 'Oswald', sans-serif;
+    font-size: calc(7px + 0.390625vw);
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    text-shadow: black 1px 2px 0px, black 1px 3px 2.5px;
+	align-items: center;
+	justify-content: center;
+	cursor: grab;
+}
+
+body .contentrecipe .boxrecipe .items {
+	display: flex;
+	position: absolute;
+	flex-direction: row;
+	margin-left: 7.5vw;
+	width: 22vw;
+	height: 9vw;
+	background-color: rgba(49, 49, 49, 0.295);
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+body .contentrecipe .boxrecipe .items .item{
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	margin-left: 0.2vw;
+	width: 4vw;
+	height: 9vw;
+}
+
+body .contentrecipe .boxrecipe .items .item .boximgitemfalse{
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	width: 4vw;
+	height: 4vw;
+	background-color: rgba(167, 2, 2, 0.651);
+	border-radius: 10px;
+	align-items: center;
+	justify-content: center;
+}
+
+body .contentrecipe .boxrecipe .items .item .boximgitemfalse img{
+	max-height: 3vw;
+	max-width: 3vw;
+	cursor: grab;
+}
+
+body .contentrecipe .boxrecipe .items .item .boximgitemtrue{
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	width: 4vw;
+	height: 4vw;
+	background-color: rgba(13, 177, 68, 0.651);
+	border-radius: 10px;
+	align-items: center;
+	justify-content: center;
+}
+
+body .contentrecipe .boxrecipe .items .item .boximgitemtrue img{
+	max-height: 3vw;
+	max-width: 3vw;
+	cursor: grab;
+}
+
+body .contentrecipe .boxrecipe .items .item .labelitem {
+	display: flex;
+	position: relative;
+	width: 4vw;
+	height: 1.5vw;
+	font-family: 'Oswald', sans-serif;
+    font-size: calc(7px + 0.390625vw);
+    text-transform: uppercase;
+    color: orangered;
+    text-shadow: black 1px 2px 0px, black 1px 3px 2.5px;
+	align-items: center;
+	justify-content: center;
+	cursor: grab;
+}
+
+body .contentrecipe .boxrecipe .items .item .qtyitem {
+	display: flex;
+	position: relative;
+	width: 4vw;
+	height: 1.5vw;
+	font-family: 'Oswald', sans-serif;
+    font-size: calc(7px + 0.390625vw);
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    text-shadow: black 1px 2px 0px, black 1px 3px 2.5px;
+	align-items: center;
+	justify-content: center;
+	cursor: grab;
+}
+
+body .contentrecipe .boxrecipe .items .item .qtyiteminv {
+	display: flex;
+	position: relative;
+	width: 4vw;
+	height: 1.5vw;
+	font-family: 'Oswald', sans-serif;
+    font-size: calc(7px + 0.390625vw);
+    text-transform: uppercase;
+    color: rgb(240, 126, 85);
+    text-shadow: black 1px 2px 0px, black 1px 3px 2.5px;
+	background-color: rgba(0, 0, 0, 0.356);
+	align-items: center;
+	justify-content: center;
+	cursor: grab;
+}
+
+body .contentrecipe .actionscraft {
+	display: flex;
+	flex-direction: row;
+	flex-direction: row;
+	position: relative;
+	width: 30vw;
+	height: 2vw;
+	margin-top: 0.25vw;
+	border-radius: 10px;
+	padding-right: 1vw;
+	justify-content: right;
+	align-items: center;
+	cursor: grab;
+}
+
+/* ---------------------------- */
+/* barredefil */
+/* ---------------------------- */
+
+body .barredefil {
+	display: none;
+	flex-direction: column;
+	position: absolute;
+	width: 25vw;
+	height: 10vw;
+	margin-left: 22vw;
+	background-color: rgba(0, 0, 0, 0.67);
+	border-radius: 21px;
+	align-items: center;
+	justify-content: center;	
+	overflow: auto;
+}
+
+body .barredefil .title {
+	display: flex;
+	position: absolute;
+	width: 25vw;
+	height: 3vw;
+	margin-bottom: 7vw;
+	font-family: 'Oswald', sans-serif;
+    font-size: calc(10px + 0.390625vw);
+    text-transform: uppercase;
+    color: orangered;
+    text-shadow: black 1px 2px 0px, black 1px 3px 2.5px;
+	background-color: rgba(0, 0, 0, 0.75);
+	border-radius: 21px 21px 0 0;
+	align-items: center;
+	justify-content: center;
+	cursor: grab;
+}
+
+body .barredefil .contentdefil {
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	width: 20vw;
+	height: 4vw;
+	margin-top: 1.5vw;
+	align-items: center;
+	cursor: grab;
+}
+
+body .barredefil .contentdefil .itemfinal{
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	width: 4vw;
+	height: 4vw;
+	border-radius: 10px;
+	justify-content: center;
+	align-items: center;
+	cursor: grab;
+	background-color: rgb(0, 0, 0);
+}
+
+body .barredefil .contentdefil .itemfinal .boximg{
+	display: flex;
+	position: relative;
+	width: 3vw;
+	height: 3vw;
+	background-color: rgba(49, 49, 49, 0.103);
+	border-radius: 10px;
+	align-items: center;
+	justify-content: center;
+	cursor: grab;
+}
+
+body .barredefil .contentdefil .itemfinal .boximg img{
+	max-height: 2.8vw;
+	max-width: 2.8vw;
+	cursor: grab;
+}
+
+body .barredefil .contentdefil .progressbar {
+	display: flex;
+	position: absolute;
+	flex-direction: column;
+	margin-left: 5vw;
+	width: 15vw;
+	height: 4vw;
+	background-color: rgba(49, 49, 49, 0.295);
+	border-radius: 10px;
+	align-items: center;
+	justify-content: center;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+body .barredefil .contentdefil .progressbar .barre {
+	display: flex;
+	position: relative;
+	width: 14vw;
+	height: 0.5vw;
+	background-color: rgba(255, 255, 255, 0.637);
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+body .barredefil .contentdefil .progressbar .barre .inbarre{
+	display: flex;
+	position: relative;
+	width: 0%;
+	height: 0.5vw;
+	border-radius: 10px;
+	background-color: rgba(23, 253, 100, 0.637);
+	overflow: hidden;
+}
+
+body .barredefil .contentdefil .progressbar .inprogress {
+	font-family: 'Oswald', sans-serif;
+    font-size: calc(4px + 0.390625vw);
+	height: 1.2vw;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: black 1px 2px 0px, black 1px 3px 2.5px;
+}
+	
