@@ -510,18 +510,35 @@ body .barredefil .contentdefil .progressbar {
 body .barredefil .contentdefil .progressbar .barre {
 	display: flex;
 	position: relative;
+	margin-top: 0.5vw;
 	width: 14vw;
-	height: 0.5vw;
+	height: 0.3vw;
 	background-color: rgba(255, 255, 255, 0.637);
 	border-radius: 10px;
 	overflow: hidden;
+}
+
+body .barredefil .contentdefil .progressbar .cancel {
+	display: flex;
+	position: relative;
+	width: 2vw;
+	height: 2vw;
+	margin-top: 1vw;
+	border-radius: 10px;
+	overflow: hidden;
+} 
+
+body .barredefil .contentdefil .progressbar .cancel svg{
+	max-height: 1.8vw;
+	max-width: 1.8vw;
+	cursor: grab;
 }
 
 body .barredefil .contentdefil .progressbar .barre .inbarre{
 	display: flex;
 	position: relative;
 	width: 0%;
-	height: 0.5vw;
+	height: 0.3vw;
 	border-radius: 10px;
 	background-color: rgba(23, 253, 100, 0.637);
 	overflow: hidden;
@@ -530,7 +547,6 @@ body .barredefil .contentdefil .progressbar .barre .inbarre{
 body .barredefil .contentdefil .progressbar .inprogress {
 	font-family: 'Oswald', sans-serif;
     font-size: calc(4px + 0.390625vw);
-	height: 1.2vw;
     text-transform: uppercase;
     color: white;
     text-shadow: black 1px 2px 0px, black 1px 3px 2.5px;

@@ -26,7 +26,6 @@ window.addEventListener('message', function(event) {
         countCraft = event.data.countCraft
         indexrecipe = event.data.index
         datarecipe = data.recipes[indexrecipe]
-        console.log(JSON.stringify(dataitems))
         loadrecipe()
 
     }
@@ -228,6 +227,12 @@ function startcraft(){
         loadbarredefil()
     } else {
         console.log('countcraft must be > 0')
+        let datam = {
+            type: "error",
+            msg: "la valeur doit être suéprieure à 0",
+            timer: 2000,
+        }
+        notif(datam)
     }
 }
 
@@ -235,6 +240,12 @@ function startcraft(){
 
 function cancelcraft(){
     hideUi()
+    let datam = {
+        type: "info",
+        msg: "Craft annulé",
+        timer: 2000,
+    }
+    notif(datam)
 }
 
 // barre
@@ -262,6 +273,9 @@ function loadbarredefil(){
                 <div class="barre" id="barre">
                     <div class="inbarre" id="inbarre"></div>
                 </div>
+                <div class="cancel" id="cancel" onclick="cancelcraft()">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20" width="15" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#dd0865" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                </div>
             </div>
         </div>
     `
@@ -272,6 +286,11 @@ function loadbarredefil(){
 }
 
 
+// functions notif
+
+function notif(datamsg){
+    $.post(`https://${GetParentResourceName()}/notifjs`, JSON.stringify({datamsg: datamsg}))
+}
 
 // functions base
 
