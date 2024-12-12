@@ -1,5 +1,7 @@
 Options = {}
 
+Options.language = "fr"     -- "fr" "en" "de" "es" you can add another one in translate.lua file
+
 -------------------------------------------------------------------
 --- Notification Functions
 -------------------------------------------------------------------
