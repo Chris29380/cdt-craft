@@ -1,19 +1,9 @@
-Options = {}
 
 -------------------------------------------------------------------
---- Notification Functions
--------------------------------------------------------------------
-Notifs = function (type,msg,timer,id)
-    -- use here your own export function for notification
-    -- you can modify variables etc.
-    exports['cdt-notifs']:showNotification(type,msg,timer,id)
-end
-
--------------------------------------------------------------------
---- Zones craft (without jobs)
+--- Zones craft jobs
 -------------------------------------------------------------------
 
-Options.zonescraft = {
+Options.zonescraftjobs = {
     [1] = 
         {
             -- blip
@@ -65,5 +55,9 @@ Options.zonescraft = {
                 owner = true,
                 groups = {},
             },
+            -- jobs
+            jobs = {
+                {name = "police", grade = 0},
+            }
         },
 }

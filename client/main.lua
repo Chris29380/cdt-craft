@@ -16,6 +16,7 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
     -- call triggers
     TriggerEvent("cdtcraft:initBlips")
     TriggerEvent("cdtcraft:initMarkers")
+    TriggerEvent("cdtcraft:checkJob")
 end)
 
 RegisterNetEvent('esx:onPlayerLogout')
@@ -32,6 +33,7 @@ AddEventHandler('onResourceStart', function(resourceName)
         -- call trigger
         TriggerEvent("cdtcraft:initBlips")
         TriggerEvent("cdtcraft:initMarkers")
+        TriggerEvent("cdtcraft:checkJob")
     end
 end)
 
