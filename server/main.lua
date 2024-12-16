@@ -22,7 +22,21 @@ AddEventHandler("cdtcraft:initstashes", function ()
             local maxWeight = stash.maxweight
             local owner = stash.owner
             local groups = null
-            local coords = vector3(10.048, -376.813, 38.709)
+            local coords = zone.coords
+            ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, coords)
+        end
+    end
+    if Options.zonescraftjobs then
+        for i = 1, #Options.zonescraftjobs do
+            local zone = Options.zonescraftjobs[i]
+            local stash = Options.zonescraftjobs[i].stash
+            local id = "craftjob"..i
+            local label = zone.label
+            local slots = stash.slots
+            local maxWeight = stash.maxweight
+            local owner = stash.owner
+            local groups = null
+            local coords = zone.coords
             ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, coords)
         end
     end
@@ -31,22 +45,6 @@ end)
 RegisterNetEvent('onResourceStart')
 AddEventHandler('onResourceStart', function(resourceName)
     if (GetCurrentResourceName() == resourceName) then 
-        TriggerEvent("cdtcraft:initstashes")
-    end
-end)
-
-RegisterCommand("addburger", function(source, args, rawCommand)
-    local xPlayer = ESX.GetPlayerFromId(source)
-    if xPlayer then
-        local inventory = ox_inventory:GetInventory({id = 'craft1', owner = xPlayer.identifier})
-        print("invetory id : "..inventory.id)
-        exports.ox_inventory:AddItem(inventory.id, "burger", 1)
-    end
-end, false)
-
-AddEventHandler('onResourceStart', function(resourceName)
-    if (GetCurrentResourceName() == resourceName) then 
-        Citizen.Wait(300)
         TriggerEvent("cdtcraft:initstashes")
     end
 end)
@@ -110,7 +108,7 @@ AddEventHandler("cdtcraft:checkcraft", function (data)
 end)
 
 RegisterNetEvent("cdtcraft:manageitems")
-AddEventHandler("cdtcraft:manageitems", function (indexs, itemsneed, itemfinal, qtyfinal, labelitemfinal, timer)
+AddEventHandler("cdtcraft:manageitems", function (indexs, isjob, itemsneed, itemfinal, qtyfinal, labelitemfinal, timer)
     local xPlayer = ESX.GetPlayerFromId(source)
     local canAdd = true
     print("indexs : "..indexs)
@@ -153,13 +151,37 @@ AddEventHandler("cdtcraft:manageitems", function (indexs, itemsneed, itemfinal, 
                         ox_inventory:RemoveItem(xPlayer.source, itemsneed[l].name, itemsneed[l].qty)
                     end
                     Wait(timer - 300)
-                    local inventory = ox_inventory:GetInventory({id = 'craft'..indexs, owner = xPlayer.identifier})
-                    exports.ox_inventory:AddItem(inventory.id, itemfinal, qtyfinal)
-                    -- notif add item to stockage
+                    if isjob then
+                        local inventory = ox_inventory:GetInventory({id = 'craftjob'..indexs, owner = xPlayer.identifier})
+                        exports.ox_inventory:AddItem(inventory.id, itemfinal, qtyfinal)
+                        local rd = math.random(1000,9999999)
+                        local data = {
+                            msg = qtyfinal.." "..labelitemfinal.." ajouté(s) au stockage",
+                            timer = 2500,
+                            id = "craftok"..rd
+                        }
+                        TriggerClientEvent("cdtcraft:notifcraftok", xPlayer.source, data)
+                    else
+                        local inventory = ox_inventory:GetInventory({id = 'craft'..indexs, owner = xPlayer.identifier})
+                        exports.ox_inventory:AddItem(inventory.id, itemfinal, qtyfinal)
+                        local rd = math.random(1000,9999999)
+                        local data = {
+                            msg = qtyfinal.." "..labelitemfinal.." ajouté(s) au stockage",
+                            timer = 2500,
+                            id = "craftok"..rd
+                        }
+                        TriggerClientEvent("cdtcraft:notifcraftok", xPlayer.source, data)
+                    end
                 else
                     Wait(timer - 300)
                     TriggerClientEvent("cdtcraft:stateincraft", xPlayer.source)
-                    print("not enough itmes for this recipe")
+                    local rd = math.random(1000,9999999)
+                    local data = {
+                        msg = "Il vous manque des ingrédients...",
+                        timer = 2500,
+                        id = "crafterror"..rd
+                    }
+                    TriggerClientEvent("cdtcraft:notifcrafterror", xPlayer.source, data)
                 end
                 incraft[xPlayer.source] = false
 
@@ -167,6 +189,13 @@ AddEventHandler("cdtcraft:manageitems", function (indexs, itemsneed, itemfinal, 
                 Wait(timer - 300)
                 TriggerClientEvent("cdtcraft:stateincraft", xPlayer.source)
                 incraft[xPlayer.source] = false
+                local rd = math.random(1000,9999999)
+                local data = {
+                    msg = "Il vous manque des ingrédients...",
+                    timer = 2500,
+                    id = "crafterror"..rd
+                }
+                TriggerClientEvent("cdtcraft:notifcrafterror", xPlayer.source, data)
             end
         end
     else

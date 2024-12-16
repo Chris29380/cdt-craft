@@ -1,4 +1,3 @@
-
 -------------------------------------------------------------------
 --- Zones craft jobs
 -------------------------------------------------------------------
@@ -11,9 +10,9 @@ Options.zonescraftjobs = {
             type = 1,
             color = 1,
             scale = 1.0,
-            label = "Craft",
+            label = "Burger Shot - Sandwichs",
             -- coords
-            coords = vector3(10.048, -376.813, 38.709),
+            coords = vector3(17.063736, -400.734070, 38.625610),
             -- marker
             markertype = 28,
             markercolor = {R = 255, G = 122, B = 0, A = 255},

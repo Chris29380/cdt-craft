@@ -1,3 +1,51 @@
+blipsjobs = {}
+
+--------------------------------------------------------------------
+---  Blips
+--------------------------------------------------------------------
+
+RegisterNetEvent("cdtcraft:initBlipsjobs")
+AddEventHandler("cdtcraft:initBlipsjobs", function ()
+    if blipsjobs then
+        for i = 1, #blipsjobs do
+            if blipsjobs[i]["blipId"] ~= nil then
+                RemoveBlip(blipsjobs[i]["blipId"])
+            end
+        end
+        blips = {}
+    end
+    for k,v in pairs(Options.zonescraftjobs) do
+        if v["showblip"] then
+            if startjob[k] == true then
+                TriggerEvent("cdtcraft:generateblipsjobs", k)
+            end
+        end
+    end
+end)
+
+RegisterNetEvent("cdtcraft:generateblipsjobs")
+AddEventHandler("cdtcraft:generateblipsjobs", function (indexb)
+    local data = Options.zonescraftjobs[indexb]
+    local type = data["type"]
+    local color = data["color"]
+    local scale = data["scale"]
+    local label = data["label"]
+    local blip = AddBlipForCoord(data["coords"].x, data["coords"].y, data["coords"].z)
+    SetBlipDisplay(blip, 4)
+    SetBlipSprite(blip, tonumber(type))
+    SetBlipColour(blip, tonumber(color))
+    SetBlipScale(blip, tonumber(scale))
+    SetBlipAsShortRange(blip, true)
+    BeginTextCommandSetBlipName("STRING")
+    AddTextComponentString(label)
+    EndTextCommandSetBlipName(blip)
+    table.insert(blipsjobs, {blipId = blip})
+end)
+
+--------------------------------------------------------------------
+---  Markers
+--------------------------------------------------------------------
+
 RegisterNetEvent("cdtcraft:generatemarkersjob")
 AddEventHandler("cdtcraft:generatemarkersjob", function (indexs)
     local data = Options.zonescraftjobs[indexs]
@@ -34,7 +82,7 @@ AddEventHandler("cdtcraft:generatemarkersjob", function (indexs)
                     local textaction = "[<C>"..data.keyaction.."</C>] "..data.labelaction
                     CDT.Functions.DrawText3D(coords.x, coords.y, coords.z + 1.0, textaction, 4, 255,255,255,255, false)
                     if IsControlJustPressed(1, data.keycode) then
-                        TriggerEvent("cdtcraft:openUi", data, indexs)
+                        TriggerEvent("cdtcraft:openUiJob", data, indexs)
                         inCraftUi = true
                     end
                 else

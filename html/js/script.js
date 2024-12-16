@@ -6,6 +6,7 @@ window.addEventListener('message', function(event) {
 						
 		data = event.data.data
         indexs = event.data.indexs
+        isjob = event.data.isjob
 
         progresstick = 0
         tick = 0
@@ -101,7 +102,7 @@ function sendDataToNui(types, indexs){
 
 function openstash(indexs){
     if (indexs){
-        $.post(`https://${GetParentResourceName()}/openstash`, JSON.stringify({index: indexs}))
+        $.post(`https://${GetParentResourceName()}/openstash`, JSON.stringify({index: indexs, isjob: isjob}))
         hideUi()
     } else {
         console.log("no indexs")
@@ -221,15 +222,15 @@ function startcraft(){
         datarecipe: datarecipe,
         countCraft: countCraft,
         indexs: indexs,
+        isjob: isjob,
     }
     if (countCraft > 0){
         $.post(`https://${GetParentResourceName()}/startcraft`, JSON.stringify(data))
         loadbarredefil()
     } else {
-        console.log('countcraft must be > 0')
         let datam = {
             type: "error",
-            msg: "la valeur doit être suéprieure à 0",
+            msg: "la quantité doit être suéprieure à 0",
             timer: 2000,
         }
         notif(datam)
@@ -242,7 +243,7 @@ function cancelcraft(){
     hideUi()
     let datam = {
         type: "info",
-        msg: "Craft annulé",
+        msg: "Craft annulé...",
         timer: 2000,
     }
     notif(datam)
@@ -289,7 +290,7 @@ function loadbarredefil(){
 // functions notif
 
 function notif(datamsg){
-    $.post(`https://${GetParentResourceName()}/notifjs`, JSON.stringify({datamsg: datamsg}))
+    $.post(`https://${GetParentResourceName()}/notifjs`, JSON.stringify({datamg: datamsg}))
 }
 
 // functions base

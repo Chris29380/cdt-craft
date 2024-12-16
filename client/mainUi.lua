@@ -6,6 +6,21 @@ AddEventHandler("cdtcraft:openUi", function (data, indexs)
             type = "openUi",
             data = data,
             indexs = indexs,
+            isjob = false,
+        }
+    )
+    SetNuiFocus(true, true)
+    inCraftUi = true
+end)
+
+RegisterNetEvent("cdtcraft:openUiJob")
+AddEventHandler("cdtcraft:openUiJob", function (data, indexs)
+    SendNUIMessage(
+        {
+            type = "openUi",
+            data = data,
+            indexs = indexs,
+            isjob = true,
         }
     )
     SetNuiFocus(true, true)
@@ -44,8 +59,28 @@ AddEventHandler("cdtcraft:responsecheckcraft", function (index, countCraft, data
     )
 end)
 
-RegisterNUICallback('openstash', function (indexstash)
-	exports.ox_inventory:openInventory("stash", "craft"..indexstash.index)
+RegisterNuiCallback("notifjs", function (data)   
+    local type = data.datamg.type
+    local msg = data.datamg.msg
+    local timer = data.datamg.timer
+    local id = math.random(1000,9999999)
+    if type == "success" then
+        Notifs("craftsuccess", msg, timer, id)
+    elseif type == "info" then
+        Notifs("craftinfo", msg, timer, id)
+    elseif type == "error" then
+        Notifs("crafterror", msg, timer, id)
+    end
+end)
+
+RegisterNUICallback('openstash', function (data)
+    local indexstash = data.index
+    local isjob = data.isjob
+    if isjob then
+        exports.ox_inventory:openInventory("stash", "craftjob"..indexstash)
+    else
+        exports.ox_inventory:openInventory("stash", "craft"..indexstash)
+    end
 end)
 
 RegisterNuiCallback("startcraft", function (data)   

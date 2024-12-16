@@ -1,4 +1,8 @@
 tr = {}
+tr["fr"] = {}
+tr["en"] = {}
+tr["de"] = {}
+tr["es"] = {}
 
 tr["fr"]["cancel"]          = "Craft annulé"
 tr["fr"]["additemstah"]     = "ajouté à votre stockage"

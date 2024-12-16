@@ -30,6 +30,7 @@ AddEventHandler("cdtcraft:startCraft", function (data)
     Citizen.CreateThread(function ()
         print("data craft : "..json.encode(data))
         local indexs = data.indexs
+        local isjob = data.isjob
         local timer = data.datarecipe.timer or 3000
         local dict = data.datarecipe.anim.dict
         local anim = data.datarecipe.anim.animation
@@ -55,7 +56,7 @@ AddEventHandler("cdtcraft:startCraft", function (data)
                 end
                 break
             else
-                TriggerServerEvent("cdtcraft:manageitems", indexs,itemsneed, itemfinal, qtyfinal, labelitemfinal, timer)
+                TriggerServerEvent("cdtcraft:manageitems", indexs, isjob, itemsneed, itemfinal, qtyfinal, labelitemfinal, timer)
             end
             if dict and not inanim then
                 startAnim(dict, anim)
